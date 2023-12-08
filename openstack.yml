@@ -1,0 +1,17 @@
+---
+
+- hosts: identity
+  become: true
+  roles:
+    - keystone
+
+- hosts: imaging
+  become: true
+  roles:
+    - glance
+
+- hosts: compute
+  become: true
+  roles:
+    - nova
+

@@ -1,0 +1,27 @@
+---
+
+- name: Install Glance on Ubuntu
+  apt:
+    name: glance
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Starting/Enabling Glance on Ubuntu
+  service:
+    name: glance-api
+    state: started
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Glance on CentOS
+  yum:
+    name: openstack-glance
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: Starting/Enabling Glance on CentOS
+  service:
+    name: openstack-glance-api
+    state: started
+    enabled: true
+  when: ansible_distribution == "CentOS"

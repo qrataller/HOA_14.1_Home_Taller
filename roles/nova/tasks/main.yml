@@ -1,0 +1,27 @@
+---
+
+- name: Install Nova on Ubuntu
+  apt:
+    name: nova-compute
+    state: latest
+  when: ansible_distribution == "Ubuntu"
+
+- name: Starting/Enabling Nova on Ubuntu
+  service:
+    name: nova-compute
+    state: started
+    enabled: true
+  when: ansible_distribution == "Ubuntu"
+
+- name: Install Nova on CentOS
+  yum:
+    name: openstack-nova-compute
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: Starting/Enabling Nova on CentOS
+  service:
+    name: openstack-nova-api
+    state: started
+    enabled: true
+  when: ansible_distribution == "CentOS"
